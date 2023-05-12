@@ -2,7 +2,7 @@ FROM python:3.11 as builder
 COPY . /app
 WORKDIR /app
 ENV PATH="/app/venv/bin:$PATH"
-
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
 RUN apt-get update && apt-get install -y git
 RUN apt-get update
 RUN apt-get install ffmpeg -y #issue 445
@@ -14,8 +14,8 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
- RUN pip config set global.index-url  https://mirrors.aliyun.com/pypi/simple/
- RUN pip config set global.trusted-host mirrors.aliyun.com
+RUN pip config set global.index-url  https://mirrors.aliyun.com/pypi/simple/
+RUN pip config set global.trusted-host mirrors.aliyun.com
 
 FROM python:3.11
 
