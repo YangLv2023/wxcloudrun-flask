@@ -38,6 +38,7 @@ COPY . .
 
 #RUN cp ./gui/streamlit_app.py .
 
-CMD ["streamlit", "run", "streamlit_app.py"]
+#CMD ["streamlit", "run", "streamlit_app.py"]
+CMD ["python3", "aiSay.py", "0.0.0.0", "80"]
 
 EXPOSE 80
