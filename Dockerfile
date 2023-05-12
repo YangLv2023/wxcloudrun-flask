@@ -7,6 +7,9 @@ ENV PATH="/app/venv/bin:$PATH"
 #RUN apt-get update
 #RUN apt-get install ffmpeg -y #issue 445
 
+RUN apk add --update --no-cache git ffmpeg
+
+
 
 
 RUN mkdir -p /usr/app
