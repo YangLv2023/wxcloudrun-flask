@@ -19,8 +19,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
 && rm -rf /var/cache/apk/*
 
 
-RUN python3 -m venv venv
-RUN . venv/bin/activate
+
 # 拷贝当前项目到/app目录下（.dockerignore中文件除外）
 COPY . /app
 RUN apk add gcc
@@ -35,6 +34,7 @@ RUN pip config set global.trusted-host mirrors.cloud.tencent.com
 
 
 RUN python -m venv ./venv
+RUN . venv/bin/activate
 RUN pip install --user -r requirements.txt
 
 # 暴露端口。
