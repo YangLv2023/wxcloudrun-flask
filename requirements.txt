@@ -14,7 +14,7 @@ tls-client
 pypasser
 names
 colorama
-libffi-dev
+libffi-devel
 curl_cffi
 streamlit==1.21.0
 selenium
