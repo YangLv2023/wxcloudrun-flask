@@ -3,7 +3,7 @@
 # 已知alpine镜像与pytorch有兼容性问题会导致构建失败，如需使用pytorch请务必按需更换基础镜像。
 FROM python:3.11 as builder
 
-FROM alpine:3.13
+FROM alpine:3.11
 
 # 容器默认时区为UTC，如需使用上海时间请启用以下时区设置命令
 # RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone
@@ -18,9 +18,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
 && apk add --update --no-cache python3 py3-pip \
 && rm -rf /var/cache/apk/*
 
+
+RUN python3 -m venv venv
+RUN . venv/bin/activate
 # 拷贝当前项目到/app目录下（.dockerignore中文件除外）
 COPY . /app
-#RUN apk add gcc
+RUN apk add gcc
 # 设定当前的工作目录
 WORKDIR /app
 # 安装依赖到指定的/install文件夹
@@ -29,6 +32,9 @@ RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple
 RUN pip config set global.trusted-host mirrors.cloud.tencent.com
 # RUN pip install --upgrade pip
 # pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
+
+
+RUN python -m venv ./venv
 RUN pip install --user -r requirements.txt
 
 # 暴露端口。
