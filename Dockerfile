@@ -7,9 +7,11 @@ ENV PATH="/app/venv/bin:$PATH"
 #RUN apt-get update
 #RUN apt-get install ffmpeg -y #issue 445
 
+
+
 RUN mkdir -p /usr/app
 RUN python -m venv ./venv
-
+RUN pip install --upgrade pip
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
