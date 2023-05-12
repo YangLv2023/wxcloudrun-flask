@@ -3,7 +3,7 @@ COPY . /app
 WORKDIR /app
 ENV PATH="/app/venv/bin:$PATH"
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories
+
 
 RUN apt-get update && apt-get install -y git
 RUN apt-get update
