@@ -3,11 +3,11 @@ COPY . /app
 WORKDIR /app
 ENV PATH="/app/venv/bin:$PATH"
 
-#RUN apt-get update && apt-get install -y git
-#RUN apt-get update
-#RUN apt-get install ffmpeg -y #issue 445
+RUN apt-get update && apt-get install -y git
+RUN apt-get update
+RUN apt-get install ffmpeg -y #issue 445
 
-RUN apk add --update --no-cache git ffmpeg
+
 
 
 
