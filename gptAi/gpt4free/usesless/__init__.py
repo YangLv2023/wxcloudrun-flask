@@ -51,6 +51,13 @@ class Completion:
     def __response_to_json(cls, text) -> dict:
         text = str(text.decode("utf-8"))
 
-        split_text = text.rsplit("\n", 1)[1]
+        #split_text = text.rsplit("\n", 1)[1]
+        split_text = ""
+        string_array = text.split("\n")
+        for i in range(len(string_array)-1, -1, -1):
+            if len(string_array[i]) > 0 and string_array[i] != "\n":
+                split_text = string_array[i]
+                break
+
         to_json = json.loads(split_text)
         return to_json
