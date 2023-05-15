@@ -4,8 +4,9 @@ WORKDIR /app
 ENV PATH="/app/venv/bin:$PATH"
 
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories
-RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
-RUN sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
+
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 
 
 RUN apt-get install ca-certificates
@@ -41,6 +42,6 @@ COPY . .
 #RUN cp ./gui/streamlit_app.py .
 
 #CMD ["streamlit", "run", "streamlit_app.py"]
-CMD ["python3", "aiSay.py", "0.0.0.0", "80"]
+CMD ["python3", "aiSay.py", "0.0.0.0", "5000"]
 
-EXPOSE 80
+EXPOSE 5000
