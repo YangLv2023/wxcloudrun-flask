@@ -28,8 +28,8 @@ def gpt():
         prompt = request.form.get('content')
         message_id = request.form.get('message_id')
         response = usesless.Completion.create(prompt=prompt, parentMessageId=message_id)
+        print(response)
         message_id = response["id"]
-        print(response['text'])
         return jsonify({"response": response['text'], "message_id": message_id})
 
 
