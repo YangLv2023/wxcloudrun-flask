@@ -26,10 +26,11 @@ RUN python -m venv ./venv
 RUN pip install --upgrade pip
 COPY requirements.txt .
 
+RUN pip config set global.index-url  https://mirrors.aliyun.com/pypi/simple/
+RUN pip config set global.trusted-host mirrors.aliyun.com
+
 RUN pip install -r requirements.txt
 
-# RUN pip config set global.index-url  https://mirrors.aliyun.com/pypi/simple/
-# RUN pip config set global.trusted-host mirrors.aliyun.com
 
 FROM python:3.11
 

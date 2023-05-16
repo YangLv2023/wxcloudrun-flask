@@ -1,6 +1,6 @@
 
 if __name__ == "__main__":
-    from gptAi.gptAi.gpt4free import you
+    from gptAi.gpt4free import you
 
     # simple request with links and details
     response = you.Completion.create(prompt="hello world", detailed=True, include_links=True)
